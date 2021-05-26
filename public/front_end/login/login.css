@@ -1,0 +1,11 @@
+.list-login
+{
+    margin: 10px;
+    padding: 0;
+}
+
+.list-login li
+{
+    display: inline;
+    margin: 5px;
+}
