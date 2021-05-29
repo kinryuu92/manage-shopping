@@ -51,7 +51,7 @@ class AdminSliderController extends Controller
             }
             $this->slider->create($dataInsert);
             DB::commit();
-            return redirect()->route('sliders.index');
+            return redirect()->route('sliders.index')->with('message','Slider added Successfully');;
         } catch (Exception $exception) {
             DB::rollBack();
             Log::error('Message: ' . $exception->getMessage() . '---Line: ' . $exception->getLine());
@@ -79,7 +79,7 @@ class AdminSliderController extends Controller
             }
             $this->slider->find($id)->update($dataUpdate);
             DB::commit();
-            return redirect()->route('sliders.index');
+            return redirect()->route('sliders.index')->with('message','Slider Update Successfully');;
         } catch (Exception $exception) {
             DB::rollBack();
             Log::error('Message: ' . $exception->getMessage() . '---Line: ' . $exception->getLine());

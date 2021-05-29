@@ -35,7 +35,7 @@ class AdminSettingController extends Controller
            'config_value'=> $request->config_value,
             'type' => $request->type
         ]);
-        return redirect()->route('settings.index');
+        return redirect()->route('settings.index')->with('message','Setting added Successfully');;
     }
 
     public function edit($id)
@@ -50,7 +50,7 @@ class AdminSettingController extends Controller
             'config_key'=> $request->config_key,
             'config_value'=> $request->config_value,
         ]);
-        return redirect()->route('settings.index');
+        return redirect()->route('settings.index')->with('message','Setting Update Successfully');;
     }
 
     public function delete($id)

@@ -40,7 +40,7 @@ class AdminRoleController extends Controller
             'display_name' => $request->display_name,
         ]);
         $roles->permissions()->attach($request->permission_id);
-        return redirect()->route('roles.index');
+        return redirect()->route('roles.index')->with('message','Role added Successfully');;
     }
 
     public function edit($id)
@@ -59,7 +59,7 @@ class AdminRoleController extends Controller
            'display_name' => $request->display_name
         ]);
         $roles->permissions()->sync($request->permission_id);
-        return redirect()->route('roles.index');
+        return redirect()->route('roles.index')->with('message','Role Update Successfully');;
     }
 
     public function delete($id)

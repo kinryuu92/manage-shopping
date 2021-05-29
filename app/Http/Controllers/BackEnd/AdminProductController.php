@@ -40,7 +40,7 @@ class AdminProductController extends Controller
 
     public function index()
     {
-        $products = $this->product->latest()->paginate(5);
+        $products = $this->product->latest()->paginate(10);
         return view('backEnd.admin.product.index', compact('products'));
     }
 
@@ -100,7 +100,7 @@ class AdminProductController extends Controller
             }
             $product->tags()->attach($tagIds);
             DB::commit();
-            return redirect()->route('products.index');
+            return redirect()->route('products.index')->with('message','Product added Successfully');;
         } catch (Exception $exception) {
             DB::rollBack();
             Log::error('Message: ' . $exception->getMessage() . ' Line : ' . $exception->getLine());
@@ -158,7 +158,7 @@ class AdminProductController extends Controller
             }
             $product->tags()->sync($tagIds);
             DB::commit();
-            return redirect()->route('products.index');
+            return redirect()->route('products.index')->with('message','Product Update Successfully');;
         } catch (Exception $exception) {
             DB::rollBack();
             Log::error('Message: ' . $exception->getMessage() . ' Line : ' . $exception->getLine());

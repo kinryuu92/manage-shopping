@@ -22,9 +22,57 @@
 
                 <div class="col-sm-9 padding-right">
                     <!--features_items-->
-                @include('frontEnd.home.component.features_items')
-                <!--features_items-->
+                    <div class="features_items">
+                        <h2 class="title text-center">Search Results</h2>
+                        @foreach($search_product as $product)
+                            <div class="col-sm-4">
+                                <div class="product-image-wrapper">
+                                    <div class="single-products">
+                                        <div class="productinfo text-center">
 
+                                            <form>
+                                                @csrf
+                                                <input type="hidden" value="{{ $product->id }}"
+                                                       class="cart_product_id_{{ $product->id }}">
+
+                                                <input type="hidden" value="{{ $product->name }}"
+                                                       class="cart_product_name_{{ $product->id }}">
+
+                                                <input type="hidden" value="{{ $product->feature_image_path }}"
+                                                       class="cart_product_image_{{ $product->id }}">
+
+                                                <input type="hidden" value="{{ $product->price }}"
+                                                       class="cart_product_price_{{ $product->id }}">
+
+                                                <input type="hidden" value="1"
+                                                       class="cart_product_qty_{{ $product->id }}">
+
+                                                <a href="{{ route('home.details', $product->id) }}">
+                                                    <img src={{ $product->feature_image_path }} alt=""/>
+                                                </a>
+                                                <h2>{{number_format($product->price)}} VNĐ</h2>
+                                                <p>{{ $product->name }}</p>
+                                                <button type="button" class="btn btn-default add-to-cart" name="add-to-cart"
+                                                        data-id_product="{{ $product->id  }}">
+                                                    <i class="fa fa-shopping-cart"></i>
+                                                    Add to cart
+                                                </button>
+                                            </form>
+
+                                        </div>
+                                    </div>
+                                    <div class="choose">
+                                        <ul class="nav nav-pills nav-justified">
+                                            <li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
+                                            <li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                        @endforeach
+                    </div>
+                <!--features_items-->
 
                     <!--category-tab-->
                 @include('frontEnd.home.component.category_tab')
@@ -134,6 +182,7 @@
                             </a>
                         </div>
                     </div><!--/recommended_items-->
+
                 </div>
             </div>
         </div>

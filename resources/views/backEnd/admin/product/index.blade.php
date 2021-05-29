@@ -46,7 +46,7 @@
                                         <tr>
                                             <td scope="row">{{ $product->id }}</td>
                                             <td>{{ $product->name }}</td>
-                                            <td>{{ number_format($product->price)}} VNĐ</td>
+                                            <td>{{ number_format($product->price)}} $</td>
                                             <td>{{ $product->capacity }}</td>
                                             <td>{{ $product->alcohol_concentration }}</td>
                                             <td>

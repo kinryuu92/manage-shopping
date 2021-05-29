@@ -46,7 +46,7 @@ class AdminUserController extends Controller
             ]);
             $users->roles()->attach($request->role_id);
             DB::commit();
-            return redirect()->route('users.index');
+            return redirect()->route('users.index')->with('message','User added Successfully');;
         }catch (Exception $exception) {
             DB::rollBack();
             Log::error('Message: ' . $exception->getMessage() . '---Line: ' . $exception->getLine());
@@ -73,7 +73,7 @@ class AdminUserController extends Controller
             $user = $this->user->find($id);
             $user->roles()->sync($request->role_id);
             DB::commit();
-            return redirect()->route('users.index');
+            return redirect()->route('users.index')->with('message','User Update Successfully');;
         } catch (Exception $exception) {
             DB::rollBack();
             log::error('Message : ' . $exception->getMessage() . '--- Line: ' . $exception->getLine());

@@ -16,7 +16,7 @@ class LoginRegisterController extends Controller
 {
     public function index()
     {
-        return view('frontEnd.home.login_register');
+        return view('frontEnd.contact.login_register');
     }
 
     // Google login

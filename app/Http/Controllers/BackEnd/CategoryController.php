@@ -39,7 +39,8 @@ class CategoryController extends Controller
             'parent_id' => $request->parent_id,
             'slug' => Str::slug($request->name, '-')
         ]);
-        return redirect()->route('categories.index');
+
+        return redirect()->route('categories.index')->with('message','Category added Successfully');
     }
 
     public function getCategory($parentId)
@@ -64,7 +65,7 @@ class CategoryController extends Controller
             'parent_id' => $request->parent_id,
             'slug' => Str::slug($request->name, '-')
         ]);
-        return redirect()->route('categories.index');
+        return redirect()->route('categories.index')->with('message','Category Update Successfully');;
     }
 
     public function delete($id) {

@@ -11,6 +11,7 @@ use App\Http\Controllers\BackEnd\CategoryController;
 use App\Http\Controllers\FrontEnd\FrontEndController;
 use App\Http\Controllers\FrontEnd\MailController;
 use App\Http\Controllers\FrontEnd\LoginRegisterController;
+use App\Http\Controllers\FrontEnd\CartController;
 
 
 
@@ -30,6 +31,15 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/',[FrontEndController::class, 'index'])->name('home.index');
 Route::get('/product-detail/{id}',[FrontEndController::class, 'details'])->name('home.details');
+Route::post('/search',[FrontEndController::class, 'search'])->name('home.search');
+Route::get('/product-category/{slug}/{id}',[FrontEndController::class, 'productCategory'])->name('indexProduct');
+
+//Cart
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+Route::post('/add-cart', [CartController::class, 'addCart'])->name('cart.add');
+Route::post('/update-cart', [CartController::class, 'updateCart'])->name('cart.update');
+Route::get('/delete-cart/{session_id}', [CartController::class, 'deleteCart'])->name('cart.delete');
+
 //send Mail
 Route::get('/send-mail', [MailController::class, 'send_mail']  );
 //login and register
@@ -46,8 +56,9 @@ Route::get('login/facebook', [LoginRegisterController::class, 'redirectToFaceboo
 Route::get('/login/facebook/callback', [LoginRegisterController::class, 'handleFacebookCallBack']);
 
 
-Route::get('/home', function () {
-    return view('home');
+
+Route::get('/admin', function () {
+    return view('admin');
 });
 
 Route::prefix('admin')->group(function () {
@@ -161,7 +172,7 @@ Route::prefix('admin')->group(function () {
 });
 
 Auth::routes();
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+Route::get('/admin', [HomeController::class, 'index'])->name('admin');
 Route::get('/logout', [HomeController::class, 'logout'])->name('logout');
 
 
